@@ -23,5 +23,11 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fastjson-1.2.9.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mina-core-2.0.19.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Administrator/Downloads/mina-core-2.0.19.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.8.0-beta4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

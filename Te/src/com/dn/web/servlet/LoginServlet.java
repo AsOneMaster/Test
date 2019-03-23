@@ -22,7 +22,6 @@ import net.sf.json.JSONObject;
 public class LoginServlet extends  HttpServlet{
 	 
 
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -65,7 +64,7 @@ public class LoginServlet extends  HttpServlet{
 			jsonObject.put("login", "success");
 			jsonObject.put("userid", userid);
 			resp.getWriter().println(jsonObject.toString());	       
-			System.out.println("用户："+userid+"已登录。。。");							
+			//System.out.println("用户："+userid+"已登录。。。");							
 			resp.getWriter().close();
 			
 		}

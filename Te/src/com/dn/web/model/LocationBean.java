@@ -5,8 +5,8 @@ package com.dn.web.model;
 public class LocationBean {
     private int userId;                //本机用户名
     private int otherId;               //监控的用户名
-    private String latitude ;             //经度
-    private String longitude ;            //纬度
+    private double latitude ;             //经度
+    private double longitude ;            //纬度
     private String radius ;                //精度
     private String addr;                   //地址
     private String locationDescribe;      //位置描述
@@ -24,7 +24,7 @@ public class LocationBean {
     public LocationBean(){
 
     }
-    public LocationBean(int userId, int otherId, String  latitude, String  longitude,String  radius, String addr, String locationDescribe,String date) {
+    public LocationBean(int userId, int otherId, double  latitude, double  longitude,String  radius, String addr, String locationDescribe,String date) {
         this.userId = userId;
         this.otherId=otherId;
         this.latitude = latitude;
@@ -34,7 +34,7 @@ public class LocationBean {
         this.locationDescribe = locationDescribe;
         this.date=date;
     }
-    public LocationBean(int userId, String  latitude, String  longitude, String addr, String locationDescribe) {
+    public LocationBean(int userId, double  latitude, double  longitude, String addr, String locationDescribe) {
         this.userId = userId;
 
         this.latitude = latitude;
@@ -60,19 +60,19 @@ public class LocationBean {
         this.userId = userId;
     }
 
-    public String  getLatitude() {
+    public double  getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public String  getLongitude() {
+    public double  getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String  longitude) {
+    public void setLongitude(double  longitude) {
         this.longitude = longitude;
     }
 

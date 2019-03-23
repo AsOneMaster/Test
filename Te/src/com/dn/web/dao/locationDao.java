@@ -10,4 +10,5 @@ public interface locationDao {
 	int insert(LocationBean bean);
 	
 	List<LocationBean> send(int userid);
+	LocationBean whosendto(int userid,int otherid);
 }

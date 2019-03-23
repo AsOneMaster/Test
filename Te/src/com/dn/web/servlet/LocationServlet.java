@@ -34,15 +34,19 @@ public class LocationServlet extends  HttpServlet{
 		resp.setContentType("text/html;charset=utf-8");  
 	    resp.setCharacterEncoding("UTF-8");		
 		String loc=req.getParameter("loc");
-		System.out.println(loc);
+		 //System.out.println(loc);
 
 		JSONObject jsonOb = JSONObject.fromObject(loc);
 
 		LocationBean r_bean = (LocationBean)JSONObject.toBean(jsonOb, LocationBean.class);
-		LocationService lService=new LocationService();
-		lService.insert(r_bean);
-		
-		System.out.println(":"+r_bean.getDate());
+//		LocationService lService=new LocationService();
+////		lService.insert(r_bean);
+//		JSONObject reciveloc=new JSONObject();
+//		reciveloc.put("otherid", r_bean.getOtherId());
+//		reciveloc.put("la", r_bean.getLatitude());
+//		reciveloc.put("lo", r_bean.getLongitude());
+//		resp.getWriter().println(reciveloc.toString());
+		//System.out.println(":"+r_bean.getDate());
 
 	}
 	

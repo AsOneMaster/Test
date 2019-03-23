@@ -11,7 +11,7 @@ import com.dn.web.tools.DB;
 
 
 public class LocationService implements locationDao{
-	private static String SEARCH="select * from login where userid=?";
+	private static String SEARCH="select * from location where userid=? and otherid=?";
 	private static String INSERT="insert into location (userid,latitude,longitude,addr,locationDescribe,date) values(?,?,?,?,?,?)";
 	@Override
 	public int insert(LocationBean bean) {
@@ -21,13 +21,13 @@ public class LocationService implements locationDao{
 	}
 
 	@Override
-	public List<LocationBean> send(int userid) {
+	public List<LocationBean> send(int otherid) {
 		List<LocationBean> lBeans=new ArrayList<LocationBean>();
 		// TODO Auto-generated method stub
-		ResultSet re=DB.executeQuery(SEARCH, userid);
+		ResultSet re=DB.executeQuery(SEARCH,otherid);
 		try {
 			while (re.next()) {
-				LocationBean bean=new LocationBean(re.getInt(0),re.getInt(1),re.getString(2),re.getString(3),null,re.getString(4),re.getString(5),re.getString(6));
+				LocationBean bean=new LocationBean(re.getInt(0),re.getInt(1),re.getDouble(2),re.getDouble(3),null,re.getString(4),re.getString(5),re.getString(6));
 				lBeans.add(bean);
 			}
 		} catch (SQLException e) {
@@ -35,6 +35,22 @@ public class LocationService implements locationDao{
 			e.printStackTrace();
 		}
 		return lBeans;
+	}
+	@Override
+	public LocationBean whosendto(int userid,int otherid) {
+		
+		// TODO Auto-generated method stub
+		ResultSet re=DB.executeQuery(SEARCH,userid,otherid);
+		try {
+			while (re.next()) {
+				LocationBean bean=new LocationBean(re.getInt(0),re.getInt(1),re.getDouble(2),re.getDouble(3),null,re.getString(4),re.getString(5),re.getString(6));
+				return bean;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 
