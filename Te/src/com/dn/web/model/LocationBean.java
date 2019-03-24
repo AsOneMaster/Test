@@ -1,17 +1,44 @@
 package com.dn.web.model;
 
-
+import java.sql.Date;
 
 public class LocationBean {
     private int userId;                //本机用户名
     private int otherId;               //监控的用户名
-    private double latitude ;             //经度
-    private double longitude ;            //纬度
-    private String radius ;                //精度
+    private Date event_date;
+    public Date getEvent_date() {
+		return event_date;
+	}
+	public void setEvent_date(Date event_date) {
+		this.event_date = event_date;
+	}
+
+	private String radius ;                //精度
     private String addr;                   //地址
     private String locationDescribe;      //位置描述
     private String date;
-    public String getDate() {
+    private String end_addr;                   //地址
+    private String end_locationDescribe;      //位置描述
+    private String end_date;
+    public String getEnd_addr() {
+		return end_addr;
+	}
+	public void setEnd_addr(String end_addr) {
+		this.end_addr = end_addr;
+	}
+	public String getEnd_locationDescribe() {
+		return end_locationDescribe;
+	}
+	public void setEnd_locationDescribe(String end_locationDescribe) {
+		this.end_locationDescribe = end_locationDescribe;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
+	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {
@@ -24,24 +51,28 @@ public class LocationBean {
     public LocationBean(){
 
     }
-    public LocationBean(int userId, int otherId, double  latitude, double  longitude,String  radius, String addr, String locationDescribe,String date) {
-        this.userId = userId;
-        this.otherId=otherId;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.radius = radius;
+    public LocationBean(int userId,String addr, String locationDescribe,String date,String end_addr,String end_locationDescribe,String end_date) {
+        this.userId = userId;         
         this.addr = addr;
         this.locationDescribe = locationDescribe;
         this.date=date;
+        this.end_addr=end_addr;
+        this.end_locationDescribe=end_locationDescribe;
+        this.end_date=end_date;
     }
-    public LocationBean(int userId, double  latitude, double  longitude, String addr, String locationDescribe) {
+    public LocationBean(int userId,Date event_date,String addr, String locationDescribe,String date) {
         this.userId = userId;
-
-        this.latitude = latitude;
-        this.longitude = longitude;
-
+        this.event_date=event_date;
         this.addr = addr;
         this.locationDescribe = locationDescribe;
+        this.date=date;
+
+    }
+    public LocationBean(int userId, String end_addr, String end_locationDescribe,String end_date) {
+        this.userId = userId;
+        this.end_addr = addr;
+        this.end_locationDescribe =end_locationDescribe;
+        this.end_date=end_date;
 
     }
     public int getOtherId() {
@@ -60,21 +91,8 @@ public class LocationBean {
         this.userId = userId;
     }
 
-    public double  getLatitude() {
-        return latitude;
-    }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double  getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double  longitude) {
-        this.longitude = longitude;
-    }
+    
 
     public String  getRadius() {
         return radius;

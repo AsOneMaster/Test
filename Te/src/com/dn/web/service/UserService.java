@@ -36,6 +36,7 @@ public class UserService implements UserDao{
 	public int insert(User user) {
 		// TODO Auto-generated method stub
 		int re=DB.executeUpdate(INSERT, user.getUserid(),user.getName(),user.getPass());
+
 		return re;
 	}
 
