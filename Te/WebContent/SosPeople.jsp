@@ -8,7 +8,7 @@
 <title>呼救信息</title>
 </head>
 <body>
-		<%=request.getParameter("users") %> 	
+		呼救信息：<%=request.getParameter("users") %> 	
 
 </body>
 </html>

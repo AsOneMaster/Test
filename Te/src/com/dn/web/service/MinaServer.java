@@ -42,8 +42,7 @@ public class MinaServer {
 				new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
 		  //心跳检测开始
         KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();
-//        KeepAliveFilter heartBeat = new KeepAliveFilter(heartBeatFactory,
-//                IdleStatus.BOTH_IDLE);
+
 		KeepAliveRequestTimeoutHandler heartBeatHandler = new KeepAliveRequestTimeoutHandlerImpl();
 		KeepAliveFilter heartBeat = new KeepAliveFilter(heartBeatFactory,
 					IdleStatus.BOTH_IDLE, heartBeatHandler);
@@ -88,69 +87,84 @@ public class MinaServer {
     	public void messageReceived(IoSession session, Object message)
     			throws Exception {
     			String str = message.toString();
-    			JSONObject lObject = new JSONObject();
-    			JSONObject jsonOb = JSONObject.fromObject(str);
-    			
-    			System.out.println(jsonOb.toString()); 
-    	        /*System.out.println("Message From " + info[0]);      
-    	        System.out.println("Message To " + info[1]);*/
-    		     if(jsonOb.getString("client").equals("0")){
-     	        	MinaServer.usersMap.put(jsonOb.getString("name"), session);
-     	        	System.out.println("用户【"+jsonOb.getString("name")+"】已登录");
-     	        	num=usersMap.size();
-     	        	
-     	        	System.out.println(num);
-     	        	info.add(jsonOb.getString("name"));
-     	        }
-    		     if(jsonOb.getString("client").equals("yes")) {
-    	        	System.out.println("收到求救信息");
-	    	      
-	    	         	if(num==1){
-	    	         		MinaServer.usersMap.get(info.get(0).toString( )).write("好友未上线");
-	        	        	System.out.println("server :好友未上线！");
-	        	        } else {
-	        	        	
-							    for(int i=0;i<num;i++) {
-			        	        	
-			        	        	if(jsonOb.getString("Userid").equals(info.get(i))) {
-			        	        		continue;
-			        	        	}else {
-			        	        		System.out.println("sos!!!!!!!!----"+jsonOb.getString("firstSend"));
-			        	        	
-										
-			        	        		lObject.put("firstSend", jsonOb.getString("firstSend"));
-			        	        		
-			        	        		lObject.put("lo",jsonOb.getDouble("lo"));
-				        	        	lObject.put("la",jsonOb.getDouble("la"));
-				        	        	lObject.put("safe", "no");
-				        	        	lObject.put("situation", "您的好友需要您的守护!");
-				        	        	MinaServer.usersMap.get(info.get(i).toString()).write(lObject.toString());
-									}
-							    
-							}
-		        	    
-	    	        }	    	        
-    	        }
-    		     if(jsonOb.getString("client").equals("no")) {
-     	        	System.out.println("守护解除");   	
- 	        	        	    for(int i=0;i<num;i++) {
- 			        	        	
- 			        	        	if(jsonOb.getString("Userid").equals(info.get(i))) {
- 			        	        		continue;
- 			        	        	}else {
- 			        	        		System.out.println("safe");
- 			        	        		lObject.put("firstSend", "no");
- 			        	        		lObject.put("safe","yes");
- 			        	        		lObject.put("situation", "您的好友安全到达目的地!");
- 				        	        	MinaServer.usersMap.get(info.get(i).toString()).write(lObject.toString());
- 									}
- 							    }	
- 	        	        		
- 							
+    	
+    				JSONObject lObject = new JSONObject();
+        			JSONObject jsonOb = JSONObject.fromObject(str);
+        			
+        			System.out.println(jsonOb.toString()); 
+        	        /*System.out.println("Message From " + info[0]);      
+        	        System.out.println("Message To " + info[1]);*/
+        		     if(jsonOb.getString("client").equals("0")){
+         	        	MinaServer.usersMap.put(jsonOb.getString("name"), session);
+         	        	System.out.println("用户【"+jsonOb.getString("name")+"】已登录");
+         	        	num=usersMap.size();
+         	        	
+         	        	System.out.println(num);
+         	        	info.add(jsonOb.getString("name"));
+         	        }
+        		     if(jsonOb.getString("client").equals("yes")) {
+        	        	System.out.println("收到求救信息");
+    	    	      
+    	    	         	if(num==1){
+    	    	         		MinaServer.usersMap.get(info.get(0).toString( )).write("好友未上线");
+    	        	        	System.out.println("server :好友未上线！");
+    	        	        } else {
+    	        	        	
+    							    for(int i=0;i<num;i++) {
+    			        	        	
+    			        	        	if(jsonOb.getString("Userid").equals(info.get(i))) {
+    			        	        		continue;
+    			        	        	}else {
+    			        	        		System.out.println("sos!!!!!!!!----"+jsonOb.getString("firstSend"));
+    			        	        	
+    										
+    			        	        		lObject.put("firstSend", jsonOb.getString("firstSend"));
+    			        	        		
+    			        	        		lObject.put("lo",jsonOb.getDouble("lo"));
+    				        	        	lObject.put("la",jsonOb.getDouble("la"));
+    				        	        	lObject.put("safe", "no");
+    				        	        	lObject.put("situation", "您的好友需要您的守护!");
+    				        	        	MinaServer.usersMap.get(info.get(i).toString()).write(lObject.toString());
+    									}
+    							    
+    							}
+    		        	    
+    	    	        }	    	        
+        	        }
+        		     if(jsonOb.getString("client").equals("no")) {
+         	        	System.out.println("守护解除");   	
+     	        	        	    for(int i=0;i<num;i++) {
+     			        	        	
+     			        	        	if(jsonOb.getString("Userid").equals(info.get(i))) {
+     			        	        		continue;
+     			        	        	}else {
+     			        	        		System.out.println("safe");
+     			        	        		lObject.put("firstSend", "no");
+     			        	        		lObject.put("safe","yes");
+     			        	        		lObject.put("situation", "您的好友安全到达目的地!");
+     				        	        	MinaServer.usersMap.get(info.get(i).toString()).write(lObject.toString());
+     									}
+     							    }	
+     	        	        		
+     							
 
- 		        	    
- 	    	        }	        
-     	        
+     		        	    
+     	    	        }	        
+        		     if(jsonOb.getString("client").equals("event")) {
+        		 	    for(int i=0;i<num;i++) {
+		        	    
+		        	        	if(jsonOb.getString("Userid").equals(info.get(i))) {
+		        	        		
+		        	        		continue;
+		        	        	}else {
+		        	        		System.out.println("群发咯");
+		        	        		 lObject.put("event","event");
+		        	                 lObject.put("eventMsg",jsonOb.getString("eventMsg"));
+			        	        	MinaServer.usersMap.get(info.get(i).toString()).write(lObject.toString());
+								}
+						    }	
+        		     }
+    			
     	        
     	        
     	      
@@ -166,6 +180,15 @@ public class MinaServer {
     			throws Exception {
     		super.messageSent(session, message);
     	}
+    	
+        public boolean isJson(String content) {
+            try {
+                JSONObject.fromObject(content);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
     }
     
 
