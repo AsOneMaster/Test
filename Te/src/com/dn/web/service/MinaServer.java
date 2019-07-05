@@ -119,7 +119,7 @@ public class MinaServer {
     			        	        	
     										
     			        	        		lObject.put("firstSend", jsonOb.getString("firstSend"));
-    			        	        		
+    			        	        		lObject.put("MaxTime", jsonOb.getString("MaxTime"));
     			        	        		lObject.put("lo",jsonOb.getDouble("lo"));
     				        	        	lObject.put("la",jsonOb.getDouble("la"));
     				        	        	lObject.put("safe", "no");

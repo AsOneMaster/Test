@@ -19,7 +19,7 @@ public class DB {
 	   try {
 		   
 		Class.forName("com.mysql.jdbc.Driver");
-		con=DriverManager.getConnection(url,"root","123456");
+		con=DriverManager.getConnection(url,"root","root");
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
